@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import java.text.NumberFormat;
 /**
@@ -34,17 +35,21 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+        EditText nameField = (EditText) findViewById(R.id.name_field);
+        String name = nameField.getText().toString();
+
         CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
         CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
         boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
         boolean haschocolate = chocolateCheckBox.isChecked();
         int price = calculatePrice();
-        String priceMessage = createOderSummary(price, hasWhippedCream, haschocolate);
+        String priceMessage = createOderSummary(name, price, hasWhippedCream, haschocolate);
         displayMessage(priceMessage);
     }
 
-    private String createOderSummary(int price, boolean addwhippedCream, boolean addchocolate){
-        String priceMessage = "Name: Mohamed";
+    private String createOderSummary(String name, int price, boolean addwhippedCream, boolean addchocolate){
+
+        String priceMessage = "Name: " + name;
         priceMessage += "\nAdd whipped cream?" + addwhippedCream;
         priceMessage += "\nAdd Chocolate?" + addchocolate;
         priceMessage += "\nQuantity: " + quantity;
@@ -89,4 +94,5 @@ public class MainActivity extends AppCompatActivity {
         TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText(message);
     }
+
 }

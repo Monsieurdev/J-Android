@@ -12,10 +12,18 @@
         android:paddingLeft="5dp"
         tools:context="com.example.android.justjava.MainActivity">
 
+        <EditText
+            android:id="@+id/name_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:inputType="textCapWords" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
+            android:layout_marginTop="16dp"
             android:text="TOPPINGS" />
 
         <CheckBox
