@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java Order for " + name);
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.just_java_order) + " " + name);
         intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
@@ -62,12 +62,12 @@ public class MainActivity extends AppCompatActivity {
 
     private String createOderSummary(String name, int price, boolean addwhippedCream, boolean addchocolate) {
 
-        String priceMessage = "Name: " + name;
-        priceMessage += "\nAdd whipped cream?" + addwhippedCream;
-        priceMessage += "\nAdd Chocolate?" + addchocolate;
-        priceMessage += "\nQuantity: " + quantity;
-        priceMessage += "\nTotal: $" + price;
-        priceMessage += "\nThank you!";
+        String priceMessage = getString(R.string.order_summary_name, name);
+        priceMessage += "\n" + getString(R.string.add_whipped_cream) + addwhippedCream;
+        priceMessage += "\n" + getString(R.string.add_chocolate) + addchocolate;
+        priceMessage += "\n" + getString(R.string.order_quantity)+ " " + quantity;
+        priceMessage += "\n" + getString(R.string.total) + " " + price;
+        priceMessage += "\n" + getString(R.string.thank_you);
         return priceMessage;
     }
 
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void increment(View view) {
         if (quantity == 100) {
-            Toast.makeText(this, "You cannot have more than 100 coffees", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.increment_toast), Toast.LENGTH_SHORT).show();
             return;
         }
         quantity = quantity + 1;
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void decrement(View view) {
         if (quantity == 1) {
-            Toast.makeText(this, "You cannot have less than 1 coffees", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.decrement_toast), Toast.LENGTH_SHORT).show();
             return;
         }
         quantity = quantity - 1;
